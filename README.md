@@ -1,5 +1,18 @@
 # C-Courses
 
+```c
+    printf("\n");
+    printf("   Written with the      █████████    \n");
+    printf("                        ███░░░░░███   \n");
+    printf("                       ███     ░░░    \n");
+    printf("                      ░███            \n");
+    printf("                      ░███            \n");
+    printf("                      ░░███     ███   \n");
+    printf("                       ░░█████████    \n");
+    printf("                        ░░░░░░░░░         programming language  \n");
+    printf("\n");
+```
+
 
 ## Numbers
 
@@ -43,3 +56,11 @@
 
 
  ---
+
+
+ # Some interesting resources for later
+
+ [Color output in terminal](https://www.putorius.net/color-output-bash.html)
+ [Colors](https://www.shellhacks.com/bash-colors/)
+
+ 
