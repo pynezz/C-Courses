@@ -17,7 +17,6 @@
 
 ---
 
-
 ## Strings *=  `char str[]`*
 
 ### Placeholders
@@ -38,6 +37,9 @@
  **%n**  is a placeholder for the number of characters printed so far
  
  **%%%** is a placeholder for a percent sign
+
+ ### Format specifiers
+ - **%0.15f** is a placeholder for a **f***loating* point value w/15 digits
 
 
  ---
