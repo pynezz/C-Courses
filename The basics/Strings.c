@@ -6,8 +6,6 @@
 //     int *value;
 // };
 
-int main()
-{
     // Terminal fargeoutput med ANSI escape codes
     // start:
     // "\033[<n>m" hvor n = 30 (svart), 31 (rød), 32 (grønn), 33 (gul), 34 (blå), 35 (lilla), 36 (cyan), 37 (lys grå / hvit)
@@ -31,6 +29,24 @@ int main()
     //     {"green", 4}
     // };
 
+    // char flight_gray_start[] = "\033[0;37m";
+    // char flight_gray_end[] = "\033[0m";
+
+    // char fblack_start[] = "\033[0;30m";
+    // char fblack_end[] = "\033[0m";
+
+    // char fgreen_start[] = "\033[0;32m";
+    // char fgreen_end[] = "\033[0m";
+
+    // char fcyan_start[] = "\033[0;36m";
+    // char fcyan_end[] = "\033[0m";
+
+    // char fmagenta_start[] = "\033[0;35m";
+    // char fmagenta_end[] = "\033[0m";
+
+
+int main()
+{
     char color[7][10] = {
         {"\033[0;37m"}, // 0 = gray
         {"\033[0;36m"}, // 1 = cyan
@@ -42,24 +58,9 @@ int main()
     };
 
     char cEnd[] = "\033[0m";
-
-    char flight_gray_start[] = "\033[0;37m";
-    char flight_gray_end[] = "\033[0m";
-
-    char fblack_start[] = "\033[0;30m";
-    char fblack_end[] = "\033[0m";
-
-    char fgreen_start[] = "\033[0;32m";
-    char fgreen_end[] = "\033[0m";
-
-    char fcyan_start[] = "\033[0;36m";
-    char fcyan_end[] = "\033[0m";
-
-    char fmagenta_start[] = "\033[0;35m";
-    char fmagenta_end[] = "\033[0m";
-
     
     // Bold text = "\033[1m;0m"
+    
     printf("\n---------------------********************-----------------------\n");
     printf("\n\tConvert a character to its ASCII representation\n");
      
