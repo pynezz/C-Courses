@@ -1,8 +1,3 @@
-// We will look at usage of sizeof(). Please write a code that is going to output
-// the sizes of various datatypes, pointers and static arrays.
-
-// Hint : int, float, double, long, signed, unsigned, int *, float *, void *, int array[20]
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,12 +5,11 @@
 #include <stdarg.h>
 #include <ctype.h>
 
-// void err_n_die(const char *fmt, ...);
-
 int err_no_exit(const char *fmt, ...);
 int oppgave_1();
 int oppgave_2();
 int oppgave_3();
+int oppgave_4();
 
 // run with gcc -Wall -o oppgaver oppgaver.c
 
@@ -41,13 +35,28 @@ int main(int argc, char **argv)
     case '3':
         oppgave_3(argv);
         break;
-    
+    case '4':
+        oppgave_4();
+        break;    
     default:
         break;
     }
 }
 
-int check_valid_input(char iput[]) {
+int oppgave_4() { // Bottles of beer
+    int bottles_of_beer = 99;
+    while (bottles_of_beer > 1)
+    {
+        printf("\n%d bottles of beer on the wall, %d bottles of beer.\nTake one down and pass it around, %d bottles of beer on the wall.\r\n", bottles_of_beer, bottles_of_beer, bottles_of_beer - 1);
+        bottles_of_beer--;
+    }
+
+    printf("\n%d bottle of beer on the wall, %d bottle of beer.\nTake one down and pass it around, no more bottles of beer on the wall.\r\n", bottles_of_beer, bottles_of_beer);
+    printf("\nNo more bottles of beer on the wall, no more bottles of beer.\nWe've taken them down and passed them around; now we're drunk and passed out!\n");
+    return 0;
+}
+
+int check_valid_input(char iput[]) { // Helper function for oppgave_3
     if (atoi(iput) == 0) {
         printf("1; input is not a digit\r\n");
         return -1;
@@ -55,7 +64,7 @@ int check_valid_input(char iput[]) {
     return 0;
 }
 
-int oppgave_3(char **argv) {
+int oppgave_3(char **argv) { // Even or odd
     int num;
     for (int i = 0; i < strlen(argv[2]); i++)
     {
@@ -93,7 +102,7 @@ int oppgave_3(char **argv) {
     return 0;
 }
 
-int oppgave_2() {
+int oppgave_2() { // Not a coding exercise
     int x, y, z, w;
 
     x = 10;
@@ -116,9 +125,8 @@ int oppgave_2() {
     return 0;
 }
 
-int oppgave_1()
+int oppgave_1() // Sizes of datatypes
 {
-
     // sizeof int:
     printf("Size of int:            %ld bytes \n", sizeof(int));
 
@@ -148,7 +156,7 @@ int oppgave_1()
     
     // sizeof int array[20]:
     printf("Size of int array[20]:  %ld bytes \r\n", sizeof(int[20]));
-
+    
     return 0;
 }
 
