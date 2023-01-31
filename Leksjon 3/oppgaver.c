@@ -4,12 +4,14 @@
 #include <errno.h>
 #include <stdarg.h>
 #include <ctype.h>
+#include <time.h>
 
 int err_no_exit(const char *fmt, ...);
 int oppgave_1();
 int oppgave_2();
 int oppgave_3();
 int oppgave_4();
+int oppgave_5();
 
 // run with gcc -Wall -o oppgaver oppgaver.c
 
@@ -37,10 +39,148 @@ int main(int argc, char **argv)
         break;
     case '4':
         oppgave_4();
-        break;    
+        break;
+    case '5':
+        oppgave_5();
+        break;
+
     default:
         break;
     }
+}
+
+int oppgave_5() {
+
+    // goto block_1;
+// Exercise 5:
+
+// Convert these blocks accordingly :
+
+// -------------------------------
+// #include <time.h>
+// #include <stdlib.h>
+
+// Block 1(to switch):
+// {
+//    srand(time(NULL))
+//    int a = rand()%20;
+//    if(a == 1){
+//       printf("%d is 1", a);}
+//    else if(a%2 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%3 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%5 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%7 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%11 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%13 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%17 == 0){
+//       printf("%d is not a prime", a);}
+//    else if(a%19 == 0){
+//       printf("%d is not a prime", a);}
+//    else{
+//       printf("%d is a prime", a);
+//    }
+
+// }
+
+    // Block 1(to switch):
+    printf("\nThe non-working code:\n");
+
+    srand(time(NULL));
+    int a = rand() % 20;
+    printf("Number is %d\n", a);
+    if (a == 1)
+    {
+        printf("%d is 1, redoing...", a);
+        oppgave_5();
+    }
+    else if (a % 2 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 3 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 5 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 7 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 11 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 13 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 17 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else if (a % 19 == 0)
+    {
+        printf("%d is not a prime", a);
+    }
+    else
+    {
+        printf("%d is a prime", a);
+    }
+    printf("\n"); // Added this instead of editing every line above
+
+    // Primes below 20: 2, 3, 5, 7, 11, 13, 17, 19
+
+    // I want prime numbers, But this does not give primes to me. What should
+    // I change to get to the last printf when a is a prime number?
+
+    // YES THIS IS A "TRICK-QUESTION" ASIGNMENT - Why doesnt the above code work as it should?
+    // Write the correct code that outputs if a number is a prime number or not :-)
+
+    printf("\n------------\n\nThe working code:\n");
+
+    srand(time(NULL));
+    a = rand() % 20;
+    printf("Number is %d\n", a);
+    int factorials = 0;
+    // if (a == 1) {
+    //     printf("%d is 1, redoing...", a);
+    //     oppgave_5();
+    // } 
+
+    // Doing this instead of a bunch of if statements
+    for (int i = 2; i < 20; i++) {
+        if (a % i == 0) {
+            factorials++;
+        }
+    }
+
+    if (factorials == 1) {
+        printf("\033[0;32m%d is a prime\033[0m\n\n", a);
+    } else {
+        printf("\033[0;31m%d is not a prime\033[0m\n\n", a);
+    }
+
+    return 0;
+
+    // Output for 13: 
+    // The non-working code:
+    // Number is 13
+    // 13 is a prime
+
+    // ------------
+    // The working code:
+    // Number is 13
+    // 13 is a prime
+    
 }
 
 int oppgave_4() { // Bottles of beer
