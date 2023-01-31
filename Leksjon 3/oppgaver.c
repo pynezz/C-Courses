@@ -12,32 +12,88 @@
 
 // void err_n_die(const char *fmt, ...);
 
-int oppgave_1(); 
+int err_no_exit(const char *fmt, ...);
+int oppgave_1();
+int oppgave_2();
+int oppgave_3();
 
 // run with gcc -Wall -o oppgaver oppgaver.c
 
 int main(int argc, char **argv) 
 {
-    int num;
-
-    char input[] = {*argv[1]};
-    // printf("10 is equal to %d bytes, and argv[1] is %d bytes", sizeof(10), sizeof(input[0]));
-    if ((isxdigit(input[0]), 2) && (input[0] != 48))
-    { // 48 = ASCII 0
-        printf("input is digit\n");
-        if (check_valid_input(argv[1]) >= 0)
-        {
-            num = atoi(argv[1]);
-            int isEven = num % 2 == 0 ? 1 : 0;
-            char odd[14] = "odd\n";
-            char even[15] = "even\n";
-            printf("Number is %s", isEven == 1 ? even : odd);
-        } else printf("please provide a non-zero integer as argument!\n");
-        // return isEven ? "Number is even" : "Number is odd";
+    if (argc < 2)
+    {
+        err_no_exit("No arguments given. Printing all exercises. \r\n");
+        oppgave_1();
     }
-    else
-        printf("please provide a non-zero integer as argument!\n");
 
+    char argument;
+    argument = *argv[1];
+
+    switch (argument)
+    {
+    case '1':
+        oppgave_1();
+        break;
+    case '2':
+        err_no_exit("Not a coding exercise\r\n"); // \r is carriage return, \n is newline, carriage return is used to move the cursor to the beginning of the line
+        break;
+    case '3':
+        oppgave_3(argv);
+        break;
+    
+    default:
+        break;
+    }
+}
+
+int check_valid_input(char iput[]) {
+    if (atoi(iput) == 0) {
+        printf("1; input is not a digit\r\n");
+        return -1;
+    }
+    return 0;
+}
+
+int oppgave_3(char **argv) {
+    int num;
+    for (int i = 0; i < strlen(argv[2]); i++)
+    {
+        if (argv[2][0] == 48) { // 48 = ASCII 0 
+            printf("Please provide a non-zero integer as argument!\n");
+            return -1;
+        }
+        if (argv[2][i] < 48 || argv[2][i] > 57) {
+            printf("You have entered at least one non-digit character: \033[0;31m%c\033[0m \r\n", argv[2][i]);
+            printf("Please only provide integers as an argument!\n");
+            return -1;
+        }
+        // printf("argv[2][%d]: %d\r\n", i, argv[2][i]);
+    }
+
+    char input[] = {*argv[2]};
+    if (input[0] == 48) {
+        printf("Please provide a non-zero integer as argument!\n");
+        return 0;
+    }
+    
+    if (isxdigit(input[0])) // 48 = ASCII 0
+    { 
+        if (check_valid_input(input) == 0)
+        {
+            num = atoi(argv[2]);
+            printf("Number is %d\r\n", num);
+
+            int isEven = num % 2 == 0 ? 1 : 0;
+            char odd[5] = "odd\n";
+            char even[6] = "even\n";
+            printf("Number is %s", isEven == 1 ? even : odd);
+        }
+    }
+    return 0;
+}
+
+int oppgave_2() {
     int x, y, z, w;
 
     x = 10;
@@ -53,33 +109,11 @@ int main(int argc, char **argv)
 
     z = ++w + y++; // z is probably going to be z(8) = 7 + 9 = 16
     // Correct answer is 18 - not sure how to test what get's executed first
+    // But it makes sense to assume that ++w executes, and then y++, and then the values are added together
 
     printf("z = %d\n", z);
-    printf("Next!\n");
-
-    if (argc < 2)
-    {
-        // err_n_die("No arguments given. Printing all exercises. \r\n");
-        oppgave_1();
-    }
-
-    if (strcmp(argv[1], "1") == 0)
-    {
-        oppgave_1();
-        // err_n_die("Done. \r ");
-    }
-
+    
     return 0;
-}
-
-int check_valid_input(char input[]) {
-    for (int i = 0; i < sizeof(input) / sizeof(char); i++) {
-        if (!isdigit(input[i])) {
-            return -1;
-        }
-    }
-    return 0;
-
 }
 
 int oppgave_1()
@@ -118,25 +152,11 @@ int oppgave_1()
     return 0;
 }
 
-// err_n_die:
-// Print error message but do not exit.
-// void err_n_die(const char *fmt, ...) {
-//     int errno_save;
-//     va_list ap;
-
-//     errno_save = errno; // value caller might want printed
-
-//     va_start(ap, fmt);
-//     vfprintf(stderr, fmt, ap);
-//     fprintf(stderr, " \r ");
-//     fflush(stderr);
-
-//     if (errno_save != 0) {
-//         fprintf(stderr, "(errno = %d) : %s \r ", errno_save, strerror(errno_save));
-//         fprintf(stderr, " \r ");
-//         fflush(stderr);
-//     }
-
-//     va_end(ap);
-//     return;
-// }
+// Error without exiting program
+int err_no_exit(const char *fmt, ...) { // ... means that the function takes a variable number of arguments
+    va_list args;
+    va_start(args, fmt);
+    vfprintf(stderr, fmt, args);
+    va_end(args);
+    return 1;
+}
