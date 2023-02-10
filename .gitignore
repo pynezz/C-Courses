@@ -1,2 +1,8 @@
+# Binaries
 strConvert
 strToASCII
+charToASCII
+
+*.out
+*.o
+*.exe
