@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int oppgave_5();
+
 int main(int *argc, char **argv) {
     int *p = malloc(sizeof(int));
     *p = 10;
     printf("%d", *p);
     free(p);
+
+    oppgave_5();
     return 0;
 }
 
@@ -21,10 +25,11 @@ int main(int *argc, char **argv) {
 // 5: you
 // 6: old
 // 7: candybar
-void oppgave_5() {
-
+int oppgave_5() {
+    printf("%s, %d, %p, %p, %s, %a, %f, %p, %*p %p %p %p %*p %*p %*s %*u %*s %*s %*s %*s %*d %*a %*a %*a %+a", "Hello");
+    return 0;
 }
 
 // Use strcmpr to compare two strings and sort them alphabetically
 
-
+// build: gcc -o oppgaver oppgaver.c
