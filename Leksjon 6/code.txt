@@ -1,33 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-int oppgave_1();
-int oppgave_2();
-
-typedef unsigned char BYTE;  // Nice to have
-
-int main(int argc, char *argv[]) {
-
-	for (int i = 1; i < argc; i++) {
-		switch (atoi(argv[i])) {
-			case 1:
-				oppgave_1();
-				break;
-			case 2:
-				oppgave_2();
-				break;
-			default:
-				printf("You did not supply a valid option. \n Usage:\n %s <task>\n\n\r", argv[0]);
-				break;
-		}
-	}
-	    
-    return 0;
-}
-
-// Read a text file full of double values and convert it into a binary file.
-// Write code that converts it back to double values as a text file.
 int oppgave_1() {
 
 	// Declare stuff
@@ -38,7 +8,7 @@ int oppgave_1() {
 	long lSize, bytesRead = 0;
 	
     // Open file
-    file = fopen(fileName, "rb");
+    file = fopen(fileName, "r");
 
 
 	///////////////////////////////////////////////////////////////
@@ -64,7 +34,7 @@ int oppgave_1() {
     	lSize = ftell(file);
     }
 
-    buffer = malloc(lSize * sizeof(BYTE));
+    buffer = malloc(lSize);
 
     if (buffer == NULL) {
     	printf("Something went wrong allocating buffer...\n");
@@ -76,22 +46,7 @@ int oppgave_1() {
 	printf("Bytes read is %ld\n", bytesRead);
     BYTE *fileBuffer = malloc(bytesRead);
 
-	double value;
-	while(fscanf(file, "%lf", &value) == 1) {
-		printf("%f\n", value);
-	}
+    while((read_bytes = fread(buffer, 1, sizeof(buffer), file)) > 0) {
+    	printf("%s", read_bytes);
+    }
     
-    // Done reading file
-
-    // Convert to binary
-
-	// Close the file
-    free(buffer);
-    fclose(file);
-    return 0;
-}
-
-int oppgave_2() {
-	printf("Not implemented yet...\n");
-	return 0;
-}
