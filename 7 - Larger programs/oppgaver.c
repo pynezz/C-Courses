@@ -46,4 +46,4 @@ int oppgave_2() {
 	printf("Not implemented yet\n");
 
 	return 0; 
-}
+} 
