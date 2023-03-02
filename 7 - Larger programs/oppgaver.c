@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 				oppgave_2();
 				break;
 		}
-	}
+	} 
 
 	return 0;
 }
